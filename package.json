@@ -1,0 +1,30 @@
+{
+  "name": "esbuild-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rm -rf dist/js && esbuild src/index.js --bundle --sourcemap --watch --outdir=dist",
+    "bundle": "esbuild src/index.js --bundle --outdir=.temp/babel",
+    "babel": "babel .temp/babel --out-dir .temp/minify --presets=@babel/env",
+    "minify": "rm -rf dist/js && esbuild .temp/minify/index.js --minify --outdir=dist/js",
+    "cleanup": "rm -rf .temp",
+    "build": "npm run cleanup && npm run bundle && npm run babel && npm run minify && npm run cleanup",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.16.3",
+    "jquery": "^3.6.0",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "esbuild": "^0.12.24"
+  }
+}
